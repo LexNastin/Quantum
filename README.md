@@ -25,7 +25,7 @@ My main problem was that EasyWorship was the only notable program I could use th
     - [ ] Downloading Schedules
     - [ ] Uploading Schedules
     - [ ] Multi User
-  - [ ] Basic Controls
+  - [ ] Basic UI
   - [ ] Modern UI Update
     - [ ] Customizable Layout With Presets (such as EasyWorship layouts)
 - [ ] Import From Other Programs
