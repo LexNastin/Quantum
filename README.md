@@ -17,7 +17,10 @@ My main problem was that EasyWorship was the only notable program I could use th
   - [ ] Videos
 - [ ] Remote Controls
   - [ ] API
-    - [ ] Creating Schedules
+    - [ ] Scheduling
+      - [ ] Creation
+      - [ ] Import
+      - [ ] Export
     - [ ] Controlling Schedules
     - [ ] Downloading Schedules
     - [ ] Uploading Schedules
@@ -27,6 +30,10 @@ My main problem was that EasyWorship was the only notable program I could use th
     - [ ] Customizable Layout With Presets (such as EasyWorship layouts)
 - [ ] Import From Other Programs
   - [ ] EasyWorship 6
+  - [ ] EasyWorship 7
+  - [ ] EasyWorship 2007
+  - [ ] EasyWorship 2009
+  - [ ] VisioBible
   - More To Come
 - [ ] Database Synchronised With Main Server
   - [ ] Psalms
