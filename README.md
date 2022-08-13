@@ -51,6 +51,9 @@ Also, a choice I made a little after properly beginning work on the project was 
   - [ ] Psalms
   - [ ] User Preferences
   - [ ] Schedules
+- [ ] Extra Features
+  - [ ] Plugin Support (will probably work on Python using sockets)
+  - [ ] Customizable NDI Stream Output
 
 ---
 
