@@ -14,4 +14,11 @@ api = API(shard)
 
 flask_app = flask.Flask(__name__)
 flask_app.register_blueprint(api.api)
-flask_app.run()
+def _thread():
+    flask_app.run(host="0.0.0.0")
+
+thread = threading.Thread(target=_thread, daemon=True)
+thread.start()
+
+while(1):
+    shard.update()

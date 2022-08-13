@@ -11,8 +11,9 @@
 # actual display/projection class, will also have main looper, hand
 # crafted by me :)
 
+import time
 import tkinter as tk
-from queue import Queue, Full
+from queue import Queue, Full, Empty
 
 class Shard:
     def __init__(self):
@@ -26,3 +27,20 @@ class Shard:
             return True
         except Full:
             return False
+
+    def update(self):
+        begin = time.time_ns()
+        try:
+            command = self.commandQueue.get_nowait()
+
+            print(command)
+        except Empty:
+            pass
+
+        # :: add animation into here
+        # :: upon exit, exit flask
+
+        self.root.update()
+        self.root.update_idletasks()
+        ms_taken = (time.time_ns() - begin) / 10**9
+        time.sleep(max(0, 1/60-ms_taken))
