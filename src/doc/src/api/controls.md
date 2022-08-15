@@ -1,7 +1,5 @@
 # API - Controls
 
-## Controls
-
 ### `POST` `/api/controls/next_slide`
 
 Advanced to the next slide
