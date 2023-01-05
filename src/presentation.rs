@@ -28,3 +28,17 @@ pub struct Presentation {
     pub slides: Vec<Slide>,
     pub pres_type: PresType,
 }
+
+impl Presentation {
+    pub fn blank_presentation() -> Presentation {
+        let title = "None".to_owned();
+        let slides: Vec<Slide> = Vec::new();
+        let pres_type = PresType::Other("None".to_owned());
+
+        Presentation {
+            title,
+            slides,
+            pres_type,
+        }
+    }
+}

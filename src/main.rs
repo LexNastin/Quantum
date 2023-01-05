@@ -1,7 +1,7 @@
-use quantum::database::Database;
+use quantum::manager::Manager;
 
 fn main() {
-    let db: Database = Database::load_db();
+    let manager = Manager::init();
     println!("Database:");
-    println!("{}", db.as_string());
+    println!("{}", manager.database.as_string());
 }
