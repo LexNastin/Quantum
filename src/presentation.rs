@@ -14,16 +14,17 @@ pub enum PresType {
 }
 
 impl PresType {
-    pub fn to_string(&self) -> &str {
+    pub fn as_string(&self) -> String {
         match self {
-            PresType::Song => "Song",
-            PresType::Scripture => "Scripture",
-            PresType::Other(value) => &value[..],
+            PresType::Song => "Song".to_owned(),
+            PresType::Scripture => "Scripture".to_owned(),
+            PresType::Other(value) => value[..].to_owned(),
         }
     } 
 }
 
 pub struct Presentation {
+    pub title: String,
     pub slides: Vec<Slide>,
     pub pres_type: PresType,
 }
