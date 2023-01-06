@@ -44,16 +44,16 @@ impl Output {
         }
     }
 
-    pub fn new_window() -> Box<Window> {
+    pub fn new_window(role: DisplayRole) -> Box<Window> {
         Box::new(
             Window {
-                role: DisplayRole::Main,
+                role,
                 curr_slide: Slide::blank_slide(),
             }
         )
     }
 
-    pub fn new_display(&mut self, mut display: Box<dyn Display>, role: DisplayRole) {
+    pub fn new_display(&mut self, mut display: Box<dyn Display>) {
         display.render(
             self.curr_pres.slides
                 .get(self.curr_slide)
