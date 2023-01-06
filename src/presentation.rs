@@ -1,12 +1,27 @@
+use crate::media::MediaType;
 use crate::media::Media;
 use std::string::String;
 use std::vec::Vec;
 
+#[derive(Clone)]
 pub struct Slide {
     pub text: String,
     pub background: Media,
 }
 
+impl Slide {
+    pub fn blank_slide() -> Slide {
+        Slide {
+            text: "".to_owned(),
+            background: Media {
+                media_type: MediaType::Color,
+                media: "#000000".to_owned(),
+            },
+        }
+    }
+}
+
+#[derive(Clone)]
 pub enum PresType {
     Song,
     Scripture,
@@ -23,6 +38,7 @@ impl PresType {
     } 
 }
 
+#[derive(Clone)]
 pub struct Presentation {
     pub title: String,
     pub slides: Vec<Slide>,

@@ -73,4 +73,13 @@ impl Database {
         }
         presentation_strs[..presentation_strs.len() - 2].to_owned()
     }
+
+    pub fn get_pres(&self, idx: usize) -> Presentation {
+        self.presentations
+            .get(idx)
+            .unwrap_or(
+                &Presentation::blank_presentation()
+            )
+            .clone()
+    }
 }

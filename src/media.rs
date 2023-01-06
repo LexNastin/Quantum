@@ -1,5 +1,6 @@
 use std::string::String;
 
+#[derive(Copy, Clone)]
 pub enum MediaType {
     Color,
     Video,
@@ -18,6 +19,7 @@ impl MediaType {
     } 
 }
 
+#[derive(Clone)]
 pub struct Media {
     pub media_type: MediaType,
     pub media: String,
