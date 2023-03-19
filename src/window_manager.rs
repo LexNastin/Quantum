@@ -1,5 +1,6 @@
 use nannou::prelude::*;
 use std::collections::HashMap;
+use crate::presentation::Slide;
 
 pub struct Window {
     pub title: String,
@@ -7,6 +8,10 @@ pub struct Window {
     pub size: Option<(i32, i32)>, // if fullscreen, this won't have a value
 }
 
+// TODO: make "new" functions actually create a window
+// TODO: implement startup window (as "new" function)
+// TODO: remove the following allow
+#[allow(unused_variables)]
 impl Window {
     pub fn new_windowed(title: String, size: (i32, i32)) -> Self {
         // TODO: Find screen centre and use that
@@ -24,6 +29,16 @@ impl Window {
             position,
             size: None,
         }
+    }
+
+    pub fn render_slide(&self, curr_slide: &Slide, new_slide: &Slide) -> bool {
+        // TODO: implement rendering slides
+        true
+    }
+
+    pub fn close(&self, title: String) -> bool {
+        // TODO: implement closing
+        true
     }
 }
 
