@@ -10,8 +10,8 @@ pub struct Slide {
 }
 
 impl Slide {
-    pub fn blank_slide() -> Slide {
-        Slide {
+    pub fn blank_slide() -> Self {
+        Self {
             text: "".to_owned(),
             background: Media {
                 media_type: MediaType::Color,
@@ -46,12 +46,12 @@ pub struct Presentation {
 }
 
 impl Presentation {
-    pub fn blank_presentation() -> Presentation {
+    pub fn blank_presentation() -> Self {
         let title = "None".to_owned();
         let slides: Vec<Slide> = Vec::new();
         let pres_type = PresType::Other("None".to_owned());
 
-        Presentation {
+        Self {
             title,
             slides,
             pres_type,

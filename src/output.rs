@@ -1,7 +1,10 @@
 use crate::presentation::Presentation;
 use crate::presentation::Slide;
+use crate::window_manager;
 use std::vec::Vec;
 use std::string::String;
+use std::cell::RefCell;
+use std::rc::Rc;
 
 pub enum DisplayRole {
     Main,
@@ -14,52 +17,58 @@ pub trait Display {
 }
 
 pub struct Window {
+    pub window_name: String,
+    window_manager: Rc<RefCell<window_manager::WindowManager>>,
     pub role: DisplayRole,
     pub curr_slide: Slide,
 }
 
 impl Display for Window {
     fn render(&mut self, new_slide: &Slide) {
-        // TODO: Implement render for different displays
+        let window = self.window_manager.borrow().get_window(&self.window_name);
         self.curr_slide = new_slide.clone();
         println!("Display output: {}", self.curr_slide.text);
     }
 }
 
 pub struct Output {
-    pub displays: Vec<Box<dyn Display>>,
+    pub displays: Vec<Rc<RefCell<dyn Display>>>,
     pub curr_pres: Presentation,
     pub curr_slide: usize,
+    pub window_manager: Rc<RefCell<window_manager::WindowManager>>,
 }
 
 impl Output {
-    pub fn init() -> Output {
-        let displays: Vec<Box<dyn Display>> = Vec::new();
+    pub fn init(window_manager: Rc<RefCell<window_manager::WindowManager>>) -> Self {
+        let displays: Vec<Rc<RefCell<dyn Display>>> = Vec::new();
         let curr_pres = Presentation::blank_presentation();
 
-        Output {
+        Self {
             displays,
             curr_pres,
             curr_slide: 0,
+            window_manager
         }
     }
 
-    pub fn new_window(role: DisplayRole) -> Box<Window> {
-        Box::new(
-            Window {
-                role,
-                curr_slide: Slide::blank_slide(),
-            }
-        )
+    pub fn new_window(&mut self, window_name: String, role: DisplayRole) {
+        let window = Window {
+            window_name,
+            window_manager: self.window_manager.clone(),
+            role,
+            curr_slide: Slide::blank_slide(),
+        };
+        self.add_display(window);
     }
 
-    pub fn new_display(&mut self, mut display: Box<dyn Display>) {
+    pub fn add_display(&mut self, mut display: impl Display + 'static) {
         display.render(
             self.curr_pres.slides
                 .get(self.curr_slide)
                 .unwrap_or(&Slide::blank_slide())
         );
-        self.displays.push(display);
+        let wrapped_display = Rc::new(RefCell::new(display));
+        self.displays.push(wrapped_display);
     }
 
     pub fn load_pres(&mut self, new_pres: Presentation) {
@@ -74,7 +83,7 @@ impl Output {
 
     fn render(&mut self, new_slide: &Slide) {
         for display in self.displays.iter_mut() {
-            display.render(new_slide);
+            display.clone().borrow_mut().render(new_slide);
         }
     }
 

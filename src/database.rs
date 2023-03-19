@@ -10,7 +10,7 @@ pub struct Database {
 }
 
 impl Database {
-    pub fn load_db() -> Database {
+    pub fn load_db() -> Self {
         let mut presentations: Vec<Presentation> = Vec::new();
         let sample = Presentation {
             title: "Song Pres Test".to_owned(),
@@ -39,7 +39,7 @@ impl Database {
             pres_type: PresType::Other("Test".to_owned()),
         };
         presentations.push(sample);
-        Database {
+        Self {
             presentations,
         }
     }
