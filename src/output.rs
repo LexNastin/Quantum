@@ -81,6 +81,9 @@ impl Output {
     }
 
     pub fn new_window(&mut self, window_name: String, role: DisplayRole) {
+        // TODO: don't use hardcoded display value
+        let wm_window = window_manager::Window::new_fullscreen("QS - Output".to_owned(), 0);
+        self.window_manager.borrow_mut().add_window(window_name.clone(), wm_window);
         let window = Window {
             window_name: window_name.clone(),
             window_manager: self.window_manager.clone(),

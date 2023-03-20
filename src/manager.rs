@@ -15,15 +15,16 @@ impl Manager {
         let database = Database::load_db();
         let window_manager = Rc::new(RefCell::new(WindowManager::init()));
         let output = Output::init(window_manager.clone());
-        window_manager
-            .borrow_mut()
-            .add_window(
-                "main".to_owned(),
-                Window::new_windowed(
-                    "QS - Main Menu".to_owned(),
-                    (640, 480)
-                )
-            );
+        // TODO: create main menu window
+//         window_manager
+//             .borrow_mut()
+//             .add_window(
+//                 "main".to_owned(),
+//                 Window::new_windowed(
+//                     "QS - Main Menu".to_owned(),
+//                     (640, 480)
+//                 )
+//             );
 
         Self {
             database,
