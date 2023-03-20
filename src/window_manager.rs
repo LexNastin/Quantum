@@ -1,4 +1,5 @@
 use nannou::prelude::*;
+use std::thread;
 use std::collections::HashMap;
 use crate::presentation::Slide;
 
@@ -52,14 +53,14 @@ impl Window {
     }
 
     pub fn new_fullscreen(title: String, display_number: i32) -> Self {
-        let id = nannou::app(Self::slide_model).update(Self::update).run();
+        nannou::app(Self::output_model).update(Self::update).run();
         Self {
             title,
             window_type: WindowType::Fullscreen { display_number },
         }
     }
 
-    fn slide_model(app: &App) -> WindowModel {
+    fn output_model(app: &App) -> WindowModel {
         let window = app.new_window().view(Self::view_slide).build().unwrap();
         WindowModel {
             animation_state: AnimationState::Stop(Slide::blank_slide()),
